@@ -6,11 +6,13 @@
   <meta name="theme-color" content="#080908">
   <meta name="description" content="Hooni — 작곡가, 프로듀서, 기타리스트. 소리로 이어지는 다음 이야기.">
   <title>HOONI — Artist Portfolio</title>
+  <script>document.documentElement.classList.add('is-loading');</script>
   <style>
     @import url('https://api.fontshare.com/v2/css?f[]=panchang@400,500,800&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap');
     :root{--ink:#080808;--paper:#f5f8ea;--acid:#d8ff00;--line:rgba(245,248,234,.2);--quiet:#a5a69c;--pad:clamp(18px,2.5vw,42px)}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ink);color:var(--paper);font-family:"Outfit","Noto Sans KR",sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit}
+    .site-loader{display:none;position:fixed;inset:0;z-index:10000;background:var(--ink);color:var(--paper);place-items:center;padding:var(--pad);opacity:1;visibility:visible;transition:opacity .55s ease,visibility .55s ease}.is-loading .site-loader{display:grid}.site-loader.is-hidden{opacity:0;visibility:hidden;pointer-events:none}.loader-inner{display:flex;flex-direction:column;align-items:center;width:min(100%,460px);margin-inline:auto;text-align:center}.loader-title{width:min(90vw,1400px);font-family:"Panchang","Noto Sans KR",sans-serif;font-size:clamp(12px,3.7vw,58px);font-weight:800;line-height:1.08;letter-spacing:.015em;margin:0;text-align:center;white-space:nowrap}.loader-meta{display:flex;justify-content:center;width:100%;margin-top:30px;color:var(--acid);font-family:"Panchang","Noto Sans KR",sans-serif;font-size:10px;letter-spacing:.07em;text-transform:uppercase}.loader-track{height:8px;width:100%;margin-top:13px;background:var(--line);border-radius:999px;overflow:hidden}.loader-fill{display:block;width:0;height:100%;background:var(--acid);border-radius:inherit;transition:width .12s linear}.is-loading body{overflow:hidden}
     .topbar{position:absolute;inset:0 0 auto;display:flex;justify-content:space-between;align-items:center;padding:26px var(--pad);font-family:"Panchang","Noto Sans KR",sans-serif;font-size:12px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;z-index:3}.topbar span:last-child{text-align:right}
     .hero{min-height:100svh;padding:90px var(--pad) 40px;display:flex;flex-direction:column;justify-content:space-between;position:relative;isolation:isolate}.hero h1{align-self:center;width:100%;text-align:center;font-family:"Panchang","Noto Sans KR",sans-serif;font-size:clamp(72px,19vw,290px);line-height:1;letter-spacing:-.02em;font-weight:800;margin:0 0 32px;white-space:nowrap}.hero-meta{display:flex;justify-content:space-between;gap:18px;font-family:"Panchang","Noto Sans KR",sans-serif;font-size:12px;font-weight:400;letter-spacing:.07em;text-transform:uppercase}.scene{width:min(47vw,650px);aspect-ratio:1;align-self:center;margin:10px auto 0;border-radius:10px;overflow:hidden;position:relative;background:#211a26;box-shadow:0 30px 100px #0009}.scene img{display:block;width:100%;height:100%;object-fit:cover}.hero-mark{align-self:center;width:33px;height:6px;border-radius:10px;background:#ec40e7;box-shadow:0 0 12px #f53cf2;margin:24px 0 0}
     .section{padding:clamp(90px,14vw,190px) var(--pad)}.about{text-align:center;max-width:1000px;margin:auto}.eyebrow{font-family:"Panchang","Noto Sans KR",sans-serif;font-size:12px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--acid)}.about p{font-size:clamp(22px,3vw,40px);line-height:1.5;letter-spacing:-.055em;font-weight:700;margin:28px 0 0}
@@ -21,9 +23,17 @@
     .reveal{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s ease}.reveal.visible{opacity:1;transform:none}
     @media(max-width:700px){.topbar{font-size:9px;padding-top:19px}.hero{padding-top:90px;min-height:92svh}.hero h1{font-size:18vw;letter-spacing:-.025em;margin-bottom:28px}.hero-meta{font-size:9px}.scene{width:78vw;height:auto;min-height:0}.section{padding-top:95px;padding-bottom:100px}.manifesto{padding:42px var(--pad);min-height:0}.manifesto h2{font-size:17vw;margin-top:30px}.manifesto .fit-line+.fit-line{margin-top:14px}.section-head{display:block}.channels{grid-template-columns:1fr;padding-bottom:75px}.channel{min-height:260px;padding:26px}.footer-row{align-items:flex-start;flex-direction:column}.footer-title{font-size:13vw}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{transition:none;opacity:1;transform:none}}
+    @media(prefers-reduced-motion:reduce){.site-loader,.loader-fill{transition:none}}
   </style>
 </head>
 <body>
+  <div class="site-loader" id="site-loader" role="status" aria-live="polite" aria-label="Welcome to my universe">
+    <div class="loader-inner">
+      <p class="loader-title" aria-hidden="true">WELCOME TO MY UNIVERSE.</p>
+      <div class="loader-meta"><span>LOADING</span></div>
+      <div class="loader-track" aria-hidden="true"><span class="loader-fill" id="loader-fill"></span></div>
+    </div>
+  </div>
   <header class="topbar"><a href="#home">HOONI / YREDGROUP</a><span>ARTIST PORTFOLIO — 2026</span></header>
   <main>
     <section class="hero" id="home">
@@ -43,7 +53,33 @@
     </section>
   </main>
   <footer><h2 class="footer-title" data-fit>LET’S MAKE SOUND.</h2><div class="footer-row"><span>음악으로 이어지는 다음 이야기.</span><a href="#home">BACK TO TOP ↑</a></div><div class="copyright">© 2026 HOONI / YREDGROUP — ARTIST PORTFOLIO</div></footer>
-  <script>
+  <script>    const loader = document.getElementById('site-loader');
+    const loaderFill = document.getElementById('loader-fill');
+    let loaderProgress = 4;
+    function paintLoaderProgress(value) {
+      loaderFill.style.width = value + '%';
+    }
+    paintLoaderProgress(loaderProgress);
+    const loaderProgressTimer = setInterval(() => {
+      loaderProgress = Math.min(loaderProgress + 1, 88);
+      paintLoaderProgress(loaderProgress);
+    }, 45);
+    const heroImage = document.querySelector('.scene img');
+    const imageReady = heroImage && heroImage.decode ? heroImage.decode().catch(() => {}) : Promise.resolve();
+    const fontsReady = document.fonts ? document.fonts.ready.catch(() => {}) : Promise.resolve();
+    const minimumDisplay = new Promise(resolve => setTimeout(resolve, 700));
+    const assetsReady = Promise.all([imageReady, fontsReady]);
+    const loadFallback = new Promise(resolve => setTimeout(resolve, 3500));
+    Promise.race([Promise.all([minimumDisplay, assetsReady]), loadFallback]).then(() => {
+      clearInterval(loaderProgressTimer);
+      paintLoaderProgress(100);
+      setTimeout(() => {
+        loader.classList.add('is-hidden');
+        document.documentElement.classList.remove('is-loading');
+        setTimeout(() => loader.remove(), 600);
+      }, 220);
+    });
+
     const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }), { threshold: .12 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     const fitCanvas = document.createElement('canvas');
